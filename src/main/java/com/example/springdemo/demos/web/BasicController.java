@@ -17,10 +17,7 @@
 package com.example.springdemo.demos.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
@@ -55,6 +52,13 @@ public class BasicController {
     @RequestMapping("/html")
     public String html() {
         return "index.html";
+    }
+
+    @RequestMapping("/resources/{path}/{fileName}")
+    public String html(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
+        // TODO 测试失败，待处理，返回resources/static/img里的文件
+        return path + "/" + fileName;
+        //return fileName;
     }
 
     @ModelAttribute
