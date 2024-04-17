@@ -7,7 +7,7 @@ public class ResultConstant {
     }
 
     public interface ResultMsg {
-        String success = "0";
+        String success = "success";
     }
 
 }

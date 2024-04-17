@@ -3,18 +3,17 @@ package com.example.springdemo.demos.web.demo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 @Slf4j
 @Component
-@ServerEndpoint("/websocket/{userId}")
+@ServerEndpoint("/webSocket/{userId}")
 public class WebSocketServer {
 
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
@@ -44,6 +43,28 @@ public class WebSocketServer {
     }
 
     /**
+     * 链接关闭调用的方法
+     */
+    @OnClose
+    public void onClose(Session session, @PathParam(value = "userId") String userId) {
+        try {
+            this.session = session;
+            webSockets.remove(this);
+            sessionPool.remove(userId);
+            log.info("websocket消息: 有断开的连接，总数为:" + webSockets.size());
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 链接成功调用的方法
+     */
+    @OnError
+    public void onError(Session session, Throwable error) {
+        log.info("websocket消息: 有异常：" + error.getMessage());
+    }
+
+    /**
      * 收到客户端消息后调用的方法
      */
     @OnMessage
@@ -64,6 +85,27 @@ public class WebSocketServer {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 此为批量消息
+     */
+    public void sendOneMessage(String message, List<String> userIdList) {
+        for (String userId : sessionPool.keySet()) {
+            //if (ArrayUtils.isNotEmpty(userIdList)) {
+            //
+            //}
+            Session session = sessionPool.get(userId);
+            if (session != null && session.isOpen()) {
+                try {
+                    log.info("websocket消: 单点消息:" + message);
+                    session.getAsyncRemote().sendText(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 }
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reactive Programming with Spring 5</title>
+</head>
+<body>
+<div>
+    <ul id="events"></ul>
+</div>
+<script type="application/javascript">
+    function addMessage(message) {
+        const el = document.createElement("li");
+        el.innerHTML = message;
+        document.getElementById("events").appendChild(el);
+    }
+
+    if (!!window.EventSource) {
+        console.log('浏览器支持EventSource')
+        // 建立连接
+        const eventSource = new EventSource("http://127.0.0.1:8080/sse/connect?userId=111");
+
+        window.onbeforeunload = function () {
+            console.log('关闭页面, 进行关闭连接')
+            eventSource.close();
+        };
+
+        eventSource.onopen = function (event) {
+            console.log('连接已经成功打开'+JSON.stringify(event))
+        };
+        eventSource.onmessage = function (event) {
+            console.log(event)
+            addMessage('接收到客户端json串信息: ' + event.data);
+        };
+
+        eventSource.onerror = function (event) { // 发生错误时
+            if (e.readyState === EventSource.CONNECTING) {
+                console.log('Connecting to server');
+            } else if (event.readyState === EventSource.OPEN) {
+                console.log('Connection opened');
+            } else if (event.readyState === EventSource.CLOSING) {
+                console.log('Connection closing');
+            } else if (event.readyState === EventSource.CLOSED) {
+                console.log('Connection closed');
+            }
+        };
+    } else {
+        addMessage('您的浏览器不支持服务器发送的事件!');
+    }
+</script>
+</body>
+</html>
