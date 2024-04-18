@@ -8,6 +8,8 @@ public class ResultConstant {
 
     public interface ResultMsg {
         String success = "success";
+        String error = "error";
+        String fail = "fail";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.springdemo.demos.web.demo;
+package com.example.springdemo.demos.web.controller.message;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

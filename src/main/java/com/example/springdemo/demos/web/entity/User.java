@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package com.example.springdemo.demos.web;
+package com.example.springdemo.demos.web.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+
+    private Long id;
 
     private String name;
 

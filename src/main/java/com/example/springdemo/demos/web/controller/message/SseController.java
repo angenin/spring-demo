@@ -1,4 +1,4 @@
-package com.example.springdemo.demos.web.demo;
+package com.example.springdemo.demos.web.controller.message;
 
 import com.example.springdemo.constant.ResultConstant;
 import lombok.extern.slf4j.Slf4j;
