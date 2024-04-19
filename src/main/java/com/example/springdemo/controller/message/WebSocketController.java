@@ -1,4 +1,4 @@
-package com.example.springdemo.demos.web.controller.message;
+package com.example.springdemo.controller.message;
 
 import com.example.springdemo.constant.ResultConstant;
 import org.springframework.beans.factory.annotation.Autowired;
