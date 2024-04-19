@@ -26,6 +26,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+  type-handlers-package: com.example.springdemo.handle.enums
 
 
 # 配置文件加密

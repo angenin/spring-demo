@@ -9,7 +9,8 @@ public class CrossConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")//对于哪些请求进行拦截
+        // 处理跨域问题
+        registry.addMapping("/**")
                 .allowedOriginPatterns("*")
                 .allowedHeaders("*")
                 .allowedMethods("GET","POST","PUT","PATCH","DELETE")

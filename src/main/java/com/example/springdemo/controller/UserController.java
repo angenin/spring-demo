@@ -1,6 +1,7 @@
 package com.example.springdemo.controller;
 
 import com.example.springdemo.domain.model.UserModel;
+import com.example.springdemo.enums.GenderEnum;
 import com.example.springdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,11 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/test")
+    public String test(@RequestParam("gender") GenderEnum genderEnum) {
+        return genderEnum.getDesc();
+    }
 
     @PostMapping("/add")
     public String modifyUser(@RequestBody UserModel user) {

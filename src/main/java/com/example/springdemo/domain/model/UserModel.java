@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.springdemo.constant.BasicConstant;
 import com.example.springdemo.domain.BaseModel;
+import com.example.springdemo.enums.GenderEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -45,8 +46,9 @@ public class UserModel extends BaseModel {
 
     /**
      * 性别（M男，F女）
+     * TODO 参数校验如何处理，待跟进
      */
-    private String gender;
+    private GenderEnum gender;
 
     /**
      * 创建时间
