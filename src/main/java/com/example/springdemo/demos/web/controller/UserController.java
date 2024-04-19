@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("/modify")
     public String modifyUser(@RequestParam String userId, @RequestBody User u) {
-        // TODO 报错，待处理 @RequestParam @RequestBody
+        // TODO 报错，@RequestParam 和 @RequestBody 不要同时使用
         User user = USER_MAP.get(userId);
         if (ObjectUtils.isNotEmpty(user)) {
             return ResultConstant.ResultMsg.error;
