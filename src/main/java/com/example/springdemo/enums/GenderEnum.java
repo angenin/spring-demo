@@ -22,9 +22,8 @@ public enum GenderEnum implements BaseEnum {
     FEMALE((short)0, "女");
 
     @EnumValue
-    @Getter
     private Short value;
-    @Getter
+
     private String desc;
 
 }

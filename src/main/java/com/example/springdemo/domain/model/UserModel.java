@@ -46,7 +46,6 @@ public class UserModel extends BaseModel {
 
     /**
      * 性别（M男，F女）
-     * TODO 参数校验如何处理，待跟进
      */
     private GenderEnum gender;
 
