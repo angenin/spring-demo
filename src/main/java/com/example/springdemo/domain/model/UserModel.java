@@ -5,12 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.springdemo.constant.BasicConstant;
-import com.example.springdemo.domain.BaseModel;
 import com.example.springdemo.enums.GenderEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @TableName(value ="t_user")
-public class UserModel extends BaseModel {
+public class UserModel implements Serializable {
 
     /**
      * ASSIGN_ID：默认自动生成（雪花算法）

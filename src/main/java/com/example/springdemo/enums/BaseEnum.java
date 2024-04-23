@@ -8,6 +8,7 @@ import org.apache.commons.lang3.reflect.MethodUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 基础枚举
@@ -46,6 +47,11 @@ public interface BaseEnum {
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 // TODO 系统异常
                 throw new RuntimeException("枚举处理异常");
+            }
+
+            // 比较值是否相等
+            if (Objects.equals(enumValue, value) || Objects.equals(enumValue.toString(), value.toString())) {
+                return enumConstant;
             }
         }
 
