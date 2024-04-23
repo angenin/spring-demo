@@ -15,12 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnumConverterFactory implements ConverterFactory<String, BaseEnum> {
 
-    public EnumConverterFactory() {
-    }
-
     @Override
     public <T extends BaseEnum> Converter<String, T> getConverter(Class<T> targetType) {
-        return source -> BaseEnum.getEnum(targetType, StringUtils.trim(source));
+        return source -> BaseEnum.getEnum(targetType, StringUtils.trim(source), true);
     }
 
 }

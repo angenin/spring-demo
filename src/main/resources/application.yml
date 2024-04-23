@@ -26,7 +26,6 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
 
 
 # 配置文件加密

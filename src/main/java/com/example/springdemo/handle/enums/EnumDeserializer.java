@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonStreamContext;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -28,7 +27,7 @@ public class EnumDeserializer extends JsonDeserializer<BaseEnum> {
      */
     @Override
     public BaseEnum deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
-        // TODO 同时也解决了参数值传枚举名称和下标能找到对应枚举的问题
+        // 同时也解决了参数值传枚举名称和下标能找到对应枚举的问题
         final String param = p.getText();// 参数值
         final JsonStreamContext parsingContext = p.getParsingContext();// 字段对应的信息
         final String currentName = parsingContext.getCurrentName();// 参数值对应的字段名
@@ -36,11 +35,7 @@ public class EnumDeserializer extends JsonDeserializer<BaseEnum> {
         try {
             final Field declaredField = currentValue.getClass().getDeclaredField(currentName);// 反射获取字段信息
             final Class<BaseEnum> targetType = (Class<BaseEnum>) declaredField.getType();// 通过字段信息获取对应的枚举的Class
-            BaseEnum baseEnum = BaseEnum.getEnum(targetType, param);// 获取对应的枚举
-            if (ObjectUtils.isEmpty(baseEnum)) {
-                // 为空抛异常，全局异常处理
-                throw new RuntimeException("[" + currentName + "]参数错误");
-            }
+            BaseEnum baseEnum = BaseEnum.getEnum(targetType, param, true);// 获取对应的枚举
             return baseEnum;
         } catch (NoSuchFieldException e) {
             // TODO 反序列化失败异常，后续异常处理配置好后处理

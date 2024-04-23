@@ -8,7 +8,6 @@ import org.apache.commons.lang3.reflect.MethodUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * 基础枚举
@@ -21,10 +20,11 @@ public interface BaseEnum {
      * 获取枚举
      * @param enumTypeClazz 枚举类型类
      * @param value 值
+     * @param nullThrExFlag 为空是否抛异常
      * @return
      * @param <T>
      */
-    public static <T extends BaseEnum> T getEnum(Class<T> enumTypeClazz, Object value) {
+    public static <T extends BaseEnum> T getEnum(Class<T> enumTypeClazz, Object value, boolean nullThrExFlag) {
         if (enumTypeClazz == null || value == null) {
             return null;
         }
@@ -43,29 +43,17 @@ public interface BaseEnum {
             Object enumValue = null;
             try {
                 enumValue = MethodUtils.invokeMethod(enumConstant, ReflectUtil.getMethodNameByFieldName(fieldName, null));
-            } catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e) {
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 // TODO 系统异常
                 throw new RuntimeException("枚举处理异常");
             }
-
-            // 比较值是否相等
-            if (Objects.equals(enumValue, value) || Objects.equals(enumValue.toString(), value.toString())) {
-                return enumConstant;
-            }
         }
 
+        // 为空抛异常，全局异常处理，获取可在枚举上加注解，通过读取类上的注解里的内容显示参数名
+        if (nullThrExFlag) {
+            throw new RuntimeException("[" + enumTypeClazz.getSimpleName() + "]参数错误[" + String.valueOf(value) + "]");
+        }
         return null;
-    }
-
-    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException {
-        GenderEnum enumConstant = GenderEnum.MALE;
-        //GenderEnum[] enumConstants = enumConstant.getClass().getEnumConstants();
-        //for (GenderEnum constant : enumConstants) {
-        //    constant.
-        //}
-        //String fieldName = ;
-        //Object o = enumConstant.getClass().getMethod(fieldName.cap(), enumConstant.getClass());
-        //int i = 1;
     }
 
 }

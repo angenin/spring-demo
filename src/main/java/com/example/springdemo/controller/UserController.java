@@ -1,6 +1,7 @@
 package com.example.springdemo.controller;
 
 import com.example.springdemo.domain.model.UserModel;
+import com.example.springdemo.domain.param.CommonQueryParam;
 import com.example.springdemo.enums.GenderEnum;
 import com.example.springdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,27 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/test")
-    public String test(@RequestParam("gender") GenderEnum genderEnum) {
+    @GetMapping("/testRequestParamAnno")
+    public String testRequestParamAnno(@RequestParam("gender") GenderEnum genderEnum) {
         return genderEnum.getDesc();
     }
 
+    @PostMapping("/testRequestBodyAnno")
+    public String testRequestBodyAnno(@RequestBody UserModel user) {
+        userService.save(user);
+        return user.getGender().getDesc();
+    }
+
     @PostMapping("/add")
-    public String modifyUser(@RequestBody UserModel user) {
+    public String addUser(@RequestBody UserModel user) {
         userService.save(user);
         return String.valueOf(user.getId());
+    }
+
+    @PostMapping("/query")
+    public String queryUser(@RequestBody CommonQueryParam param) {
+        UserModel user = userService.getById(param.getId());
+        return user.getGender().getDesc();
     }
 
     //@GetMapping("/modify")

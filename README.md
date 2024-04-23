@@ -23,7 +23,9 @@ Spring/SpringBoot单体项目的demo，致力于修改项目名后就可以直�
 
 #### 软件架构
 
+JDK：1.8
 SpringBoot：2.6.13
+MySQL：8.0.36
 MybatisPlus：3.5.2
 commons-lang3工具包：3.12.0
 fastjson：2.0.12
