@@ -1,7 +1,7 @@
 package com.example.springdemo.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.example.springdemo.handle.enums.EnumDeserializer;
+import com.example.springdemo.handle.EnumDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.springdemo.config;
 
-import com.example.springdemo.handle.enums.EnumConverterFactory;
+import com.example.springdemo.handle.EnumConverterFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

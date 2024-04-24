@@ -1,6 +1,5 @@
 package com.example.springdemo.controller.message;
 
-import com.example.springdemo.constant.ResultConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,21 +36,19 @@ public class SseController {
     }
 
     @GetMapping("/send")
-    public String send(@RequestParam(name = "userId") String userId, @RequestParam(name = "msg") String msg) throws IOException {
+    public void send(@RequestParam(name = "userId") String userId, @RequestParam(name = "msg") String msg) throws IOException {
         log.info("[{}]发送SSE消息，内容：{}", userId, msg);
         sseEmitterMap.get(userId).send(msg);
-        return ResultConstant.ResultMsg.success;
     }
 
     @GetMapping("/close")
-    public String close(@RequestParam(name = "userId") String userId) {
+    public void close(@RequestParam(name = "userId") String userId) {
         log.info("[{}]断开连接SSE", userId);
         SseEmitter sseEmitter = sseEmitterMap.remove(userId);
         // 执行完毕，断开连接
         if (ObjectUtils.isNotEmpty(sseEmitter)) {
             sseEmitter.complete();
         }
-        return ResultConstant.ResultMsg.success;
     }
 
 }

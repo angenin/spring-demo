@@ -1,4 +1,4 @@
-package com.example.springdemo.handle.enums;
+package com.example.springdemo.handle;
 
 import com.example.springdemo.config.WebMvcConfig;
 import com.example.springdemo.enums.BaseEnum;

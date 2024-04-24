@@ -1,6 +1,5 @@
 package com.example.springdemo.controller.message;
 
-import com.example.springdemo.constant.ResultConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +11,8 @@ public class WebSocketController {
     private WebSocketServer webSocketServer;
 
     @GetMapping("/send")
-    public String sendMessage(@RequestParam("userId") String userId, @RequestParam("msg") String msg) {
+    public void sendMessage(@RequestParam("userId") String userId, @RequestParam("msg") String msg) {
         webSocketServer.sendOneMessage(userId, msg);
-        return ResultConstant.ResultMsg.success;
     }
 
 }
