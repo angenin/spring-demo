@@ -12,33 +12,13 @@ public enum ResultEnum {
      */
     SUCCESS(200, true, "成功"),
     /**
-     * 对象创建成功
+     * 请求异步处理中
      */
-    CREATED(201, true, "对象创建成功"),
+    ACCEPTED(201, true, "请求异步处理中"),
     /**
-     * 请求已经被接受
+     * 参数校验错误
      */
-    ACCEPTED(202, true, "请求已经被接受"),
-    /**
-     * 操作已经执行成功，但是没有返回数据
-     */
-    NO_CONTENT(204, true, "操作已经执行成功，但是没有返回数据"),
-    // /**
-    //  * 资源已被移除
-    //  */
-    // MOVED_PERM(301, "资源已被移除"),
-    // /**
-    //  * 重定向
-    //  */
-    // SEE_OTHER(303, "重定向"),
-    // /**
-    //  * 资源没有被修改
-    //  */
-    // NOT_MODIFIED(304, "资源没有被修改"),
-    /**
-     * 参数列表错误（缺少，格式不匹配）
-     */
-    BAD_REQUEST(400, false, "参数列表错误（缺少，格式不匹配）"),
+    BAD_PARAM(400, false, "参数校验错误[%s]"),
     /**
      * 未授权
      */
@@ -48,33 +28,17 @@ public enum ResultEnum {
      */
     FORBIDDEN(403, false, "访问受限，授权过期"),
     /**
-     * 资源，服务未找到
+     * 资源服务不存在
      */
-    NOT_FOUND(404, false, "资源，服务未找！"),
+    NOT_FOUND(404, false, "资源服务不存在"),
     /**
-     * 不允许的http方法
+     * 错误的请求
      */
-    BAD_METHOD(405, false, "不允许的http方法"),
-    /**
-     * 资源冲突，或者资源被锁
-     */
-    CONFLICT(409, false, "资源冲突，或者资源被锁"),
-    /**
-     * 不支持的数据，媒体类型
-     */
-    UNSUPPORTED_TYPE(415, false, "不支持的数据，媒体类型"),
+    BAD_REQUEST(405, false, "错误的请求"),
     /**
      * 系统内部错误
      */
-    ERROR(500, false, "系统内部错误"),
-    /**
-     * 接口未实现
-     */
-    NOT_IMPLEMENTED(501, false, "接口未实现"),
-    /**
-     * 系统警告消息
-     */
-    WARN(601, false,"系统警告消息")
+    SYS_ERROR(500, false, "系统内部错误"),
 
     ;
 
@@ -92,4 +56,5 @@ public enum ResultEnum {
      * 提示信息
      */
     private final String message;
+
 }

@@ -19,12 +19,12 @@ public class BaseException extends RuntimeException {
      */
     protected final String errorMessage;
 
-    protected BaseException(ResultEnum re) {
+    protected BaseException(ResultEnum re, String... desc) {
         if (re.getStatus()) {
             throw new IllegalArgumentException("ResultEnum status must be false");
         }
         this.errorCode = re.getCode();
-        this.errorMessage = re.getMessage();
+        this.errorMessage = String.format(re.getMessage(), desc);
     }
 
 }

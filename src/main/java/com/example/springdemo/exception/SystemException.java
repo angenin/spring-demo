@@ -3,11 +3,11 @@ package com.example.springdemo.exception;
 import com.example.springdemo.enums.ResultEnum;
 
 /**
- * 校验异常
+ * 系统异常
  */
-public class VerifyException extends BaseException {
+public class SystemException extends BaseException {
 
-    public VerifyException(ResultEnum re, String... desc) {
+    public SystemException(ResultEnum re, String... desc) {
         super(re, desc);
     }
 

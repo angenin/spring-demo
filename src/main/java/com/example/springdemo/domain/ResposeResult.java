@@ -69,19 +69,11 @@ public class ResposeResult<T> extends BaseObject {
 
     /**
      * 成功返回
+     * @param data
      * @return
      */
-    public static ResposeResult success(ResultEnum re){
-        return result(re);
-    }
-
-    /**
-     * 成功返回
-     * @param re
-     * @return
-     */
-    public static <T> ResposeResult<T> success(ResultEnum re, T data){
-        return result(re, data);
+    public static <T> ResposeResult<T> success(T data){
+        return result(ResultEnum.SUCCESS, data);
     }
 
     /**

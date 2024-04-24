@@ -7,8 +7,8 @@ import com.example.springdemo.enums.ResultEnum;
  */
 public class BusinessException extends BaseException {
 
-    protected BusinessException(ResultEnum re) {
-        super(re);
+    public BusinessException(ResultEnum re, String... desc) {
+        super(re, desc);
     }
 
 }

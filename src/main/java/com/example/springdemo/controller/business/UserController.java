@@ -1,5 +1,6 @@
-package com.example.springdemo.controller;
+package com.example.springdemo.controller.business;
 
+import com.example.springdemo.controller.BaseController;
 import com.example.springdemo.domain.model.UserModel;
 import com.example.springdemo.domain.param.CommonQueryParam;
 import com.example.springdemo.enums.GenderEnum;
@@ -18,8 +19,8 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @GetMapping("/testRequestParamAnno")
-    public String testRequestParamAnno(@RequestParam("gender") GenderEnum genderEnum) {
-        return genderEnum.getDesc();
+    public void testRequestParamAnno(@RequestParam("gender") GenderEnum genderEnum) {
+        // return genderEnum.getDesc();
     }
 
     @PostMapping("/testRequestBodyAnno")

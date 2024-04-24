@@ -5,8 +5,12 @@ import com.example.springdemo.enums.ResultEnum;
 import com.example.springdemo.exception.BusinessException;
 import com.example.springdemo.exception.VerifyException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * 全局异常处理
@@ -21,7 +25,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(VerifyException.class)
-    public ResposeResult handleException(VerifyException e) {
+    public ResposeResult handleVerifyException(VerifyException e) {
         log.error("校验异常：", e);
         return ResposeResult.exception(e);
     }
@@ -32,19 +36,43 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(BusinessException.class)
-    public ResposeResult handleException(BusinessException e) {
+    public ResposeResult handleBusinessException(BusinessException e) {
         log.error("业务异常：", e);
         return ResposeResult.exception(e);
     }
 
     /**
-     * TODO 异常处理
-     * 1. 404异常，待处理
-     * https://cloud.tencent.com/developer/article/2212371
-     * https://cloud.tencent.com/developer/article/1889357
-     * https://cloud.tencent.com/developer/article/1823685
-     * 2. 特定异常处理：https://www.cnblogs.com/coderacademy/p/17994318
+     * 处理参数校验异常（@Valid注解或者@Validated进行请求参数校验）
+     * @param e
+     * @return
      */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResposeResult handleParamException(MethodArgumentNotValidException e) {
+        log.error("参数校验异常：", e);
+        return ResposeResult.result(ResultEnum.BAD_PARAM, e.getMessage());
+    }
+
+    /**
+     * 处理错误的请求异常（@Valid注解或者@Validated进行请求参数校验）
+     * @param e
+     * @return
+     */
+    @ExceptionHandler({HttpMessageNotReadableException.class, HttpRequestMethodNotSupportedException.class})
+    public ResposeResult handleRequestException(Exception e) {
+        log.error("错误的请求异常：", e);
+        return ResposeResult.result(ResultEnum.BAD_REQUEST);
+    }
+
+    /**
+     * 404异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResposeResult handle404Exception(NoHandlerFoundException e) {
+        log.error("404异常：", e);
+        return ResposeResult.result(ResultEnum.NOT_FOUND);
+    }
 
     /**
      * 处理其他异常
@@ -54,7 +82,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResposeResult handleException(Exception e) {
         log.error("系统异常：", e);
-        return ResposeResult.result(ResultEnum.ERROR);
+        return ResposeResult.result(ResultEnum.SYS_ERROR);
     }
 
 }
