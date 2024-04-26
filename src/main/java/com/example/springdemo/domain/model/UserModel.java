@@ -26,6 +26,9 @@ import java.time.LocalDateTime;
 @TableName(value ="t_user")
 public class UserModel implements Serializable {
 
+    @TableField(exist = false)
+    private static final long serialVersionUID = 2120552022189602158L;
+
     /**
      * ASSIGN_ID：默认自动生成（雪花算法）
      * TODO 默认的雪花算法生成规则，后续研究
@@ -61,6 +64,4 @@ public class UserModel implements Serializable {
     @JsonFormat(timezone = BasicConstant.TIME_ZONE, pattern = BasicConstant.DATE_TIME_FORMAT)
     private LocalDateTime modifyTime;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

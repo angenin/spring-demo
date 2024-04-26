@@ -11,6 +11,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class ResposeResult<T> extends BaseObject {
 
+    private static final long serialVersionUID = -6942129987234487344L;
+
     /**
      * 状态信息
      */
@@ -84,7 +86,5 @@ public class ResposeResult<T> extends BaseObject {
     public static ResposeResult exception(BaseException be) {
         return result(false, be.getErrorCode(), be.getErrorMessage(), null);
     }
-
-    private static final long serialVersionUID = 1L;
 
 }
