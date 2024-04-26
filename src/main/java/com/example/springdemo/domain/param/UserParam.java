@@ -35,6 +35,7 @@ public class UserParam extends BaseObject {
 
     /**
      * 性别（M男，F女）
+     * TODO 自定义参数校验（枚举）
      */
     @NotNull(message = "性别不能为空", groups = {ValidGroup.Add.class})
     private GenderEnum gender;
