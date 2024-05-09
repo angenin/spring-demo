@@ -2,7 +2,7 @@ package com.example.springdemo.domain.param;
 
 import com.example.springdemo.constant.ValidGroup;
 import com.example.springdemo.domain.BaseObject;
-import com.example.springdemo.enums.GenderEnum;
+import com.example.springdemo.enums.business.GenderEnum;
 import lombok.Data;
 
 import javax.validation.constraints.Min;

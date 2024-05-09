@@ -3,6 +3,7 @@ package com.example.springdemo.handle;
 import com.example.springdemo.domain.ResposeResult;
 import com.example.springdemo.enums.ResultEnum;
 import com.example.springdemo.exception.BusinessException;
+import com.example.springdemo.exception.ServiceException;
 import com.example.springdemo.exception.SystemException;
 import com.example.springdemo.exception.VerifyException;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResposeResult handleBusinessException(BusinessException e) {
         printlnErrorLog("业务异常", e);
+        return ResposeResult.exception(e);
+    }
+
+    /**
+     * 处理服务异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(ServiceException.class)
+    public ResposeResult handleServiceException(ServiceException e) {
+        printlnErrorLog("服务异常", e);
         return ResposeResult.exception(e);
     }
 

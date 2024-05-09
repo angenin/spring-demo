@@ -1,8 +1,8 @@
-package com.example.springdemo.enums;
+package com.example.springdemo.enums.business;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.example.springdemo.util.ReflectUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
 import java.lang.reflect.Field;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * 基础枚举
+ * 业务基础枚举
  * <p/>
  * 用于扫描、序列化、反序列化实际枚举类
  */

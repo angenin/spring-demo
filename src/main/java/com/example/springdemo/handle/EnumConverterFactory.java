@@ -1,7 +1,7 @@
 package com.example.springdemo.handle;
 
 import com.example.springdemo.config.WebMvcConfig;
-import com.example.springdemo.enums.BaseEnum;
+import com.example.springdemo.enums.business.BaseEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;

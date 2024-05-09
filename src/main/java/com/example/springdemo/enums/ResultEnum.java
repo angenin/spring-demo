@@ -40,6 +40,11 @@ public enum ResultEnum {
      */
     SYS_ERROR(500, false, "系统内部错误"),
 
+    /**
+     * 短信发送失败
+     */
+    SMS_SEND_FAIL(1001, false, "短信发送失败"),
+
     ;
 
     /**

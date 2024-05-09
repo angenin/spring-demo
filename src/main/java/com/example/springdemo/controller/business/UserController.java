@@ -5,7 +5,7 @@ import com.example.springdemo.controller.BaseController;
 import com.example.springdemo.domain.model.UserModel;
 import com.example.springdemo.domain.param.CommonQueryParam;
 import com.example.springdemo.domain.param.UserParam;
-import com.example.springdemo.enums.GenderEnum;
+import com.example.springdemo.enums.business.GenderEnum;
 import com.example.springdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

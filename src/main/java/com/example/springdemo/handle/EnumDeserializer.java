@@ -1,6 +1,6 @@
 package com.example.springdemo.handle;
 
-import com.example.springdemo.enums.BaseEnum;
+import com.example.springdemo.enums.business.BaseEnum;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonStreamContext;

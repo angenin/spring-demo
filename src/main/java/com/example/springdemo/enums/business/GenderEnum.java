@@ -1,4 +1,4 @@
-package com.example.springdemo.enums;
+package com.example.springdemo.enums.business;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.example.springdemo.handle.EnumDeserializer;
