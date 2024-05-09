@@ -24,10 +24,10 @@ import java.util.List;
 @Component
 public class TxSmsServiceImpl implements SmsService {
 
-    private static final String SIGN_NAME = "荣盛汽修公众号";
-    private static final String SMS_SDK_APP_ID = "1400908835";
-    private static final String SECRET_ID = "AKIDoTuQuFtPp9HD5pLfpqgN9qeTQMBqIWtE";
-    private static final String SECRET_KEY = "PsId9e1UuCMPK8pbRLDD885rV5UgfcTB";
+    private static final String SIGN_NAME = "";
+    private static final String SMS_SDK_APP_ID = "";
+    private static final String SECRET_ID = "";
+    private static final String SECRET_KEY = "";
 
     @Override
     public void sendSms(SmsEnum smsEnum, String phone, List<String> contentList) {
